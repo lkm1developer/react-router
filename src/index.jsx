@@ -6,6 +6,8 @@ import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import Main from './common/main.component.jsx'
 import Home from './common/home.component.jsx'
 import About from './common/about.component.jsx'
+import SignUp from './common/signup.component.jsx'
+import SignOut from './common/signout.component.jsx'
 import Car from './car/car.component.jsx'
 import CarDetail from './car/car-detail.component.jsx'
 
@@ -58,8 +60,7 @@ const data = [
         price: '$123,890'
     }
 ];
-
-
+    
 render(
     <Router history={browserHistory}>
         <Route component={Main}>
@@ -68,6 +69,11 @@ render(
             {/* Parameter route*/}
             <Route path="/cars/:id" component={CarDetail} data={data}/>
             <Route path="/about" component={About}/>
+        
+            <Route path="/signup" component={SignUp}/>
+        
+            <Route path="/logout" component={SignOut}/>
+        
         </Route>
     </Router>,
     document.getElementById('container')

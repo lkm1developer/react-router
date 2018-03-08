@@ -1,8 +1,21 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
-
+import {reactLocalStorage} from 'reactjs-localstorage';
 class Main extends Component {
+    
     render(){
+        const isLoggedIn = reactLocalStorage.getObject('user');
+
+    let button = null;
+    let buttonLogout = null;
+    console.log(isLoggedIn.email);
+    if (isLoggedIn.email) {
+        button = <Link to="/profile">Hello {isLoggedIn.name} </Link>;
+        buttonLogout = <li className="nav-item"><Link className="nav-link" to="/logout" activeClassName="active">logout</Link></li>;
+
+    } else {
+      button = <Link to="/signup">Sign Up Free</Link>;
+    }
         return(
             <div>
                 <header className="header_area animated sticky slideInDown">
@@ -19,20 +32,12 @@ class Main extends Component {
                             <div className="collapse navbar-collapse" id="ca-navbar">
                                 <ul className="navbar-nav ml-auto" id="nav">
                                     <li className="nav-item active"><a className="nav-link" href="#home">Home</a></li>
-                                    <li className="nav-item"><a className="nav-link" href="#about">About</a></li>
-                                    <li className="nav-item"><a className="nav-link" href="#features">Features</a></li>
-                                    <li className="nav-item"><a className="nav-link" href="#screenshot">Screenshot</a></li>
-                                    <li className="nav-item"><a className="nav-link" href="#pricing">Pricing</a></li>
-                                    <li className="nav-item"><a className="nav-link" href="#testimonials">Testimonials</a></li>
-                                    <li className="nav-item"><a className="nav-link" href="#team">Team</a></li>
-                                    <li className="nav-item"><a className="nav-link" href="#contact">Contact</a></li>
                                     <li className="nav-item"><Link className="nav-link" to="/" activeClassName="active">Home</Link></li>
                                     <li className="nav-item"><Link className="nav-link" to="/cars" activeClassName="active">Cars</Link></li>
                                     <li className="nav-item"><Link className="nav-link" to="/about" activeClassName="active">About</Link></li>
+                                {buttonLogout}
                                 </ul>
-                                <div className="sing-up-button d-lg-none">
-                                    <a href="#">Sign Up Free</a>
-                                </div>
+                               
                             </div>
                         </nav>
                     </div>
@@ -40,7 +45,8 @@ class Main extends Component {
                 {/* Signup btn */}
                 <div className="col-12 col-lg-2">
                     <div className="sing-up-button d-none d-lg-block">
-                        <a href="#">Sign Up Free</a>
+                    {button}
+                      
                     </div>
                 </div>
             </div>

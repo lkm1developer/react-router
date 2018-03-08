@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import validator from 'react-validation';
-
-
+import {reactLocalStorage} from 'reactjs-localstorage';
+import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import Validate from "react-validate-form";
 class SignUp extends Component {
     constructor(props) {
       super(props);
       this.state = {
         name: "lakhvinder",
-        email: "lakhvinder@gmail.com"
+        email: "lakhvinder@gmail.com",
+        isLogged:false,
       };
   
       this.handleInputChange = this.handleInputChange.bind(this);
     }
+    
     
   
     handleInputChange(event) {
@@ -37,7 +39,9 @@ class SignUp extends Component {
      })
      .then( (json) => {
        if(json.status===true){
+        reactLocalStorage.setObject('user',json.user);
          alert(json.msg);
+         browserHistory.push('/');
        }
         console.log('parsed json', json)
      })
@@ -46,7 +50,12 @@ class SignUp extends Component {
      })
      
     }
-    
+    componentWillMount() {
+      let user=reactLocalStorage.getObject('user');
+      console.log(user);
+      if(user.email){ browserHistory.push('/');}
+     
+    }
     render() {
       return (<div>
         <section className="footer-contact-area section_padding_100 clearfix" id="contact">
