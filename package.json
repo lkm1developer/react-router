@@ -1,7 +1,7 @@
 {
-  "name": "scotch-react-router",
+  "name": "react-router",
   "version": "1.0.0",
-  "description": "React Router Aricle for Scotch",
+  "description": "React Router ",
   "main": "index.js",
   "scripts": {
     "watch": "webpack -d --watch",
@@ -9,7 +9,7 @@
     "serve": "serve ./public",
     "start": "nodemon"
   },
-  "author": "Christian Nwamba",
+  "author": "lkm1developer",
   "license": "MIT",
   "devDependencies": {
     "babel-loader": "^6.4.1",
@@ -25,13 +25,6 @@
     "react": "^15.6.2",
     "react-dom": "^15.6.2",
     "react-router": "^2.8.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/scotch-io/react-routing.git"
-  },
-  "bugs": {
-    "url": "https://github.com/scotch-io/react-routing/issues"
-  },
-  "homepage": "https://github.com/scotch-io/react-routing#readme"
+  }
+  
 }
