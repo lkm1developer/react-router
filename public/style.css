@@ -60,7 +60,9 @@ h6 {
     color: #000;
     line-height: 1.2;
 }
-
+.containerr {
+    margin-top: 80px;
+}
 .section_padding_100 {
     padding-top: 100px;
     padding-bottom: 100px;

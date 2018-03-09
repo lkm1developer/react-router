@@ -9,6 +9,7 @@ class SignUp extends Component {
         name: "lakhvinder",
         email: "lakhvinder@gmail.com",
         isLogged:false,
+        image:'http://localhost:3000/img/team-img/team-3.jpg'
       };
   
       this.handleInputChange = this.handleInputChange.bind(this);
@@ -41,7 +42,7 @@ class SignUp extends Component {
        if(json.status===true){
         reactLocalStorage.setObject('user',json.user);
          alert(json.msg);
-         browserHistory.push('/');
+         //browserHistory.push('/');
        }
         console.log('parsed json', json)
      })
@@ -61,7 +62,7 @@ class SignUp extends Component {
         <section className="footer-contact-area section_padding_100 clearfix" id="contact">
         <div className="container">
             <div className="row">
-                
+                <img src="{this.state.image}"/>
                    
                     <div className="contact_from">
                         <form onSubmit={this.handleSubmit}>

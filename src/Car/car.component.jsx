@@ -2,11 +2,36 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 
 class Car extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {cars:[]};
+      }
+      componentDidMount() {
+      
+        let user=fetch('http://localhost/reactbk/cars.php', { 
+            method: 'get',
+           
+          })
+          .then( (response) => {
+            return response.json()    
+         })
+         .then( (json) => {
+           if(json.status===true){
+            
+            const cars=  json.cars;
+            this.setState({cars});
+           
+        }
+            
+           })
+       
+      };
+    
+      
     render(){
-        // Get data from route props
-        const cars = this.props.route.data;
+       
         // Map through cars and return linked cars
-        const carNode = cars.map((car) => {
+        const carNode = this.state.cars.map((car) => {
             return (
                 <Link
                     to={"/cars/"+car.id}

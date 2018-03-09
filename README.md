@@ -1,2 +1,2 @@
 ##  React Router
-A demo that backs a routing in Reactjs.
+A demo that backs a  article on routing in React.
