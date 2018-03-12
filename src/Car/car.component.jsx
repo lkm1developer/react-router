@@ -8,7 +8,7 @@ class Car extends Component {
       }
       componentDidMount() {
       
-        let user=fetch('http://localhost/reactbk/cars.php', { 
+        let user=fetch('http://localhost:5000/getallcars', { 
             method: 'get',
            
           })
@@ -34,9 +34,9 @@ class Car extends Component {
         const carNode = this.state.cars.map((car) => {
             return (
                 <Link
-                    to={"/cars/"+car.id}
+                    to={"/cars/"+car._id}
                     className="list-group-item"
-                    key={car.id}>
+                    key={car._id}><img src={car.media}width="20"/>
                     {car.name}
                 </Link>
             )

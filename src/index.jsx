@@ -12,8 +12,8 @@ import SignUp from './common/signup.component.jsx'
 import SignOut from './common/signout.component.jsx'
 import Car from './car/car.component.jsx'
 import CarDetail from './car/car-detail.component.jsx'
-import CarDetailEdit from './car/car-edit.component.jsx'
-import CarEdit from './car/car-edit.jsx'
+//import CarDetailEdit from './car/car-edit.component.jsx'
+//import CarEdit from './car/car-edit.jsx'
 
 
 
@@ -29,7 +29,7 @@ render(
             <Route path="/cars" component={Car} />
             {/* Parameter route*/}
             <Route path="/cars/:id" component={CarDetail} />
-            <Route path="/cars/edit/:id" component={CarEdit} />
+            {/* <Route path="/cars/edit/:id" component={CarEdit} />*/}
             <Route path="/about" component={About}/>
         
             <Route path="/signup" component={SignUp}/>

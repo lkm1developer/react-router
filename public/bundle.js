@@ -85,15 +85,11 @@
 	
 	var _carDetailComponent2 = _interopRequireDefault(_carDetailComponent);
 	
-	var _carEditComponent = __webpack_require__(/*! ./car/car-edit.component.jsx */ 379);
-	
-	var _carEditComponent2 = _interopRequireDefault(_carEditComponent);
-	
-	var _carEdit = __webpack_require__(/*! ./car/car-edit.jsx */ 381);
-	
-	var _carEdit2 = _interopRequireDefault(_carEdit);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	//import CarDetailEdit from './car/car-edit.component.jsx'
+	//import CarEdit from './car/car-edit.jsx'
+	
 	
 	// Import routing components
 	(0, _reactDom.render)(_react2.default.createElement(
@@ -105,7 +101,6 @@
 	        _react2.default.createElement(_reactRouter.Route, { path: '/', component: _homeComponent2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/cars', component: _carComponent2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/cars/:id', component: _carDetailComponent2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: '/cars/edit/:id', component: _carEdit2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/about', component: _aboutComponent2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _signupComponent2.default }),
 	        _react2.default.createElement(_reactRouter.Route, { path: '/logout', component: _signoutComponent2.default })
@@ -33529,7 +33524,7 @@
 	        value: function componentDidMount() {
 	            var _this2 = this;
 	
-	            var user = fetch('http://localhost/reactbk/cars.php', {
+	            var user = fetch('http://localhost:5000/getallcars', {
 	                method: 'get'
 	
 	            }).then(function (response) {
@@ -33551,9 +33546,10 @@
 	                return _react2.default.createElement(
 	                    _reactRouter.Link,
 	                    {
-	                        to: "/cars/" + car.id,
+	                        to: "/cars/" + car._id,
 	                        className: 'list-group-item',
-	                        key: car.id },
+	                        key: car._id },
+	                    _react2.default.createElement('img', { src: car.media, width: '20' }),
 	                    car.name
 	                );
 	            });
@@ -33625,7 +33621,7 @@
 	        value: function componentDidMount() {
 	            var _this2 = this;
 	
-	            var user = fetch('http://localhost/reactbk/car.php?id=' + this.props.params.id, {
+	            var user = fetch('http://localhost:5000/getcar/' + this.props.params.id, {
 	                method: 'get'
 	
 	            }).then(function (response) {
@@ -33633,7 +33629,7 @@
 	            }).then(function (json) {
 	                if (json.status === true) {
 	
-	                    var car = json.cars;
+	                    var car = json.cars[0];
 	                    _this2.setState({ car: car });
 	                }
 	            });
@@ -33749,187 +33745,6 @@
 	}(_react.Component);
 	
 	exports.default = CarDetail;
-
-/***/ }),
-/* 378 */,
-/* 379 */
-/*!****************************************!*\
-  !*** ./src/car/car-edit.component.jsx ***!
-  \****************************************/
-/***/ (function(module, exports) {
-
-	"use strict";
-
-/***/ }),
-/* 380 */,
-/* 381 */
-/*!******************************!*\
-  !*** ./src/car/car-edit.jsx ***!
-  \******************************/
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRouter = __webpack_require__(/*! react-router */ 184);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var CarEdit = function (_Component) {
-	    _inherits(CarEdit, _Component);
-	
-	    function CarEdit(props) {
-	        _classCallCheck(this, CarEdit);
-	
-	        var _this = _possibleConstructorReturn(this, (CarEdit.__proto__ || Object.getPrototypeOf(CarEdit)).call(this, props));
-	
-	        _this.state = { car: [] };
-	        return _this;
-	    }
-	
-	    _createClass(CarEdit, [{
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            var _this2 = this;
-	
-	            var user = fetch('http://localhost/reactbk/car.php?id=' + this.props.params.id, {
-	                method: 'get'
-	
-	            }).then(function (response) {
-	                return response.json();
-	            }).then(function (json) {
-	                if (json.status === true) {
-	
-	                    var car = json.cars;
-	                    _this2.setState({ car: car });
-	                }
-	            });
-	        }
-	    }, {
-	        key: 'handleRedirect',
-	        value: function handleRedirect() {
-	            _reactRouter.browserHistory.push('/cars');
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	
-	            var car = this.state.car;
-	
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'h1',
-	                    null,
-	                    car.name
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'row' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'col-sm-6 col-md-4' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'thumbnail' },
-	                            _react2.default.createElement('img', { src: car.media, alt: car.name })
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'col-sm-6 col-md-4' },
-	                        _react2.default.createElement(
-	                            'ul',
-	                            null,
-	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'strong',
-	                                    null,
-	                                    'Model'
-	                                ),
-	                                ': ',
-	                                car.model
-	                            ),
-	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'strong',
-	                                    null,
-	                                    'Make'
-	                                ),
-	                                ': ',
-	                                car.make
-	                            ),
-	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'strong',
-	                                    null,
-	                                    'Year'
-	                                ),
-	                                ': ',
-	                                car.year
-	                            ),
-	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'strong',
-	                                    null,
-	                                    'Price'
-	                                ),
-	                                ': ',
-	                                car.price
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'col-md-12' },
-	                        _react2.default.createElement(
-	                            _reactRouter.Link,
-	                            { to: "/cars/edit/" + car.id, key: car.id },
-	                            'Edit'
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'col-md-12' },
-	                        _react2.default.createElement(
-	                            'button',
-	                            { className: 'btn btn-default', onClick: this.handleRedirect.bind(this) },
-	                            'Go to Cars'
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return CarEdit;
-	}(_react.Component);
-	
-	exports.default = CarEdit;
 
 /***/ })
 /******/ ]);

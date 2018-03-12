@@ -9,7 +9,7 @@ class CarDetail extends Component {
       }
       componentDidMount() {
       
-        let user=fetch('http://localhost/reactbk/car.php?id='+this.props.params.id, { 
+        let user=fetch('http://localhost:5000/getcar/'+this.props.params.id, { 
             method: 'get',
            
            
@@ -20,7 +20,7 @@ class CarDetail extends Component {
          .then( (json) => {
            if(json.status===true){
             
-            const car=  json.cars;
+            const car=  json.cars[0];
             this.setState({car});
            
         }
